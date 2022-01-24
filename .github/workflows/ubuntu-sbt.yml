@@ -15,6 +15,7 @@ on:
 
 jobs:
   cmd:
+    name: JDK ${{ inputs.java }}
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout

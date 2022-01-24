@@ -18,6 +18,7 @@ on:
 
 jobs:
   cmd:
+    name: Scala ${{ matrix.scala }} & JDK ${{ matrix.jdk }}
     runs-on: ubuntu-20.04
     strategy:
       matrix:
