@@ -23,7 +23,7 @@ jobs:
     strategy:
       # WA: https://github.community/t/reusable-workflow-with-strategy-matrix/205676/6
       matrix:
-        jdk: ${{ fromJson(inputs.java) }}
+        java: ${{ fromJson(inputs.java) }}
         scala: ${{ fromJson(inputs.scala) }}
     steps:
       - name: Checkout
@@ -38,7 +38,7 @@ jobs:
       - name: Install AdoptOpenJDK
         uses: coursier/setup-action@v1.1.2
         with:
-          jvm: adopt:${{ inputs.java }}
+          jvm: adopt:${{ matrix.java }}
 
       - name: Run sbt command
         run: ${{ inputs.command }}
