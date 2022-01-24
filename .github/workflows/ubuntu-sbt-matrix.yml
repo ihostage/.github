@@ -1,21 +1,28 @@
-name: SBT command on single Java verion
+name: SBT command on matrix Java/Scala versions
 
 on:
   workflow_call:
     inputs:
       java:
         type: string
-        required: false
-        default: 8
+        required: true
+        description: TODO
+      scala:
+        type: string
+        required: true
         description: TODO
       command:
-        required: true
         type: string
+        required: true
         description: TODO
 
 jobs:
   cmd:
     runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        jdk: ${{ inputs.java }}
+        scala: ${{ inputs.scala }}
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -33,3 +40,5 @@ jobs:
 
       - name: Run sbt command
         run: ${{ inputs.command }}
+        env:
+          SCALA_VERSION: ${{ matrix.scala }}
